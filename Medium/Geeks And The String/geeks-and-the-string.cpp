@@ -8,25 +8,29 @@ class Solution {
   public:
     string removePair(string s) {
 
-        int i=0;
-
-        while(i<s.size()){
-
-            if(s[i]==s[i+1]){
-
-                s.erase(i,2);
-
-                i=0;
-
-            }
-
-            else i++;   
-
-        }
-
-        if(s.size()==0)s="-1";
-
-        return s;
+      stack<char> st;
+      
+      st.push(s[0]);
+      
+      for(int i = 1 ; i < s.size() ; i++){
+          if(!st.empty() and s[i] == st.top()) st.pop();
+          
+          else st.push(s[i]);
+      }
+      
+      string ans = "-1";
+      
+      if(st.empty()) return ans;
+      
+      while(!st.empty()) {
+          ans.push_back(st.top());
+          st.pop();
+      }
+      
+      reverse(ans.begin() , ans.end());
+      ans.pop_back();
+      ans.pop_back();
+      return ans;
 
     }
 };
