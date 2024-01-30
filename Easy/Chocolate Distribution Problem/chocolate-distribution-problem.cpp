@@ -8,19 +8,14 @@ class Solution{
     long long findMinDiff(vector<long long> a, long long n, long long m){
     //code
     
-   sort(a.begin(),a.end(),greater<int>());
-    vector<int>v;
-    int i=0;
-    int k=i+m-1;
-    while(k<n){
-        v.push_back(a[i]-a[k]);
-        i++;
-        k++;
+    sort(a.begin() , a.end());
+    
+    long long result = INT_MAX;
+    
+    for(int i = 0 ; i < n-m+1; i++){
+        result = min(result, a[i+m-1]-a[i]);
     }
-    sort(v.begin(),v.end());
-    return v[0];
-    
-    
+    return result;
     }   
 };
 
@@ -47,4 +42,4 @@ int main() {
 	}
 	return 0;
 }
-// } Driver Code Ends
+// } Driver Code Endshttps://media.geeksforgeeks.org/img-practice/fab-icon-new.gif
